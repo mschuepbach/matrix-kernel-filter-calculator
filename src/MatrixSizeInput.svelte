@@ -4,9 +4,9 @@
 </script>
 
 <div>
-  <input type="number" bind:value={matrixWidth} onclick="select()" />
+  <input type="number" min="1" bind:value={matrixWidth} onclick="select()" />
   <span>x</span>
-  <input type="number" bind:value={matrixHeight} onclick="select()" />
+  <input type="number" min="1" bind:value={matrixHeight} onclick="select()" />
 </div>
 
 <style>

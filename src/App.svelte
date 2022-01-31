@@ -8,12 +8,19 @@
   let kernelHeight = 3;
   let padding = 0;
 
-  $: matrix = Array(matrixHeight)
-    .fill(1)
-    .map(() => Array(matrixWidth).fill(1));
-  $: kernel = Array(kernelHeight)
-    .fill(1)
-    .map(() => Array(kernelWidth).fill(1));
+  $: matrix =
+    matrixHeight > 0 && matrixWidth > 0
+      ? Array(matrixHeight)
+          .fill(1)
+          .map(() => Array(matrixWidth).fill(1))
+      : [[]];
+
+  $: kernel =
+    kernelHeight > 0 && kernelWidth > 0
+      ? Array(kernelHeight)
+          .fill(1)
+          .map(() => Array(kernelWidth).fill(1))
+      : [[]];
 
   $: result = conv_2d(kernel, matrix, padding);
 
@@ -73,7 +80,9 @@
     <div style="grid-area: result-size">{result[0].length}x{result.length}</div>
     <div style="grid-area: matrix"><Matrix bind:matrix /></div>
     <div style="grid-area: kernel"><Matrix bind:matrix={kernel} /></div>
-    <div style="grid-area: result"><Matrix matrix={result} readonly="true" /></div>
+    <div style="grid-area: result">
+      <Matrix matrix={result} readonly="true" />
+    </div>
     <div style="grid-area: padding">
       <div>Padding</div>
       <div>
