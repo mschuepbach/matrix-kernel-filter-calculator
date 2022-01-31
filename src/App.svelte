@@ -1,4 +1,7 @@
 <script>
+  import MatrixSizeInput from "./MatrixSizeInput.svelte";
+  import Matrix from "./Matrix.svelte";
+
   let matrixWidth = 4;
   let matrixHeight = 4;
   let kernelWidth = 3;
@@ -59,85 +62,18 @@
     <h5 style="grid-area: kernel-title">Kernel</h5>
     <h5 style="grid-area: result-title">Result</h5>
     <div style="grid-area: matrix-size">
-      <input
-        type="number"
-        bind:value={matrixWidth}
-        style="width: 3em;"
-        onclick="select()"
-      />
-      <span>x</span>
-      <input
-        type="number"
-        bind:value={matrixHeight}
-        style="width: 3em;"
-        onclick="select()"
-      />
+      <MatrixSizeInput bind:matrixWidth bind:matrixHeight />
     </div>
     <div style="grid-area: kernel-size">
-      <input
-        type="number"
-        bind:value={kernelWidth}
-        style="width: 3em;"
-        onclick="select()"
-      />
-      <span>x</span>
-      <input
-        type="number"
-        bind:value={kernelHeight}
-        style="width: 3em;"
-        onclick="select()"
+      <MatrixSizeInput
+        bind:matrixWidth={kernelWidth}
+        bind:matrixHeight={kernelHeight}
       />
     </div>
     <div style="grid-area: result-size">{result[0].length}x{result.length}</div>
-    <div style="grid-area: matrix">
-      {#each matrix as row, i}
-        <div
-          style="display: flex; flex-direction: row; justify-content: center;"
-        >
-          {#each row as _, j}
-            <input
-              type="number"
-              bind:value={matrix[i][j]}
-              style="width: 3em;"
-              onclick="select()"
-            />
-          {/each}
-        </div>
-      {/each}
-    </div>
-    <div style="grid-area: kernel">
-      {#each kernel as row, i}
-        <div
-          style="display: flex; flex-direction: row; justify-content: center;"
-        >
-          {#each row as _, j}
-            <input
-              type="number"
-              bind:value={kernel[i][j]}
-              style="width: 3em;"
-              onclick="select()"
-            />
-          {/each}
-        </div>
-      {/each}
-    </div>
-    <div style="grid-area: result">
-      {#each result as row}
-        <div
-          style="display: flex; flex-direction: row; justify-content: center;"
-        >
-          {#each row as field}
-            <input
-              type="number"
-              value={field}
-              style="width: 3em;"
-              onclick="select()"
-              readonly="true"
-            />
-          {/each}
-        </div>
-      {/each}
-    </div>
+    <div style="grid-area: matrix"><Matrix bind:matrix /></div>
+    <div style="grid-area: kernel"><Matrix bind:matrix={kernel} /></div>
+    <div style="grid-area: result"><Matrix matrix={result} readonly="true" /></div>
     <div style="grid-area: padding">
       <div>Padding</div>
       <div>
@@ -169,7 +105,7 @@
       "matrix-size kernel-size result-size"
       "matrix kernel result"
       "padding padding padding";
-    grid-gap: .5em;
+    grid-gap: 0.5em;
     align-items: center;
   }
 
