@@ -59,6 +59,7 @@
 </script>
 
 <div class="container">
+  <header><h1>Matrix Kernel Filter Calculator</h1></header>
   <main>
     <h5 style="grid-area: matrix-title">Matrix</h5>
     <h5 style="grid-area: kernel-title">Kernel</h5>
@@ -114,6 +115,10 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  header {
+    margin-bottom: 1em;
   }
 
   main {
