@@ -7,6 +7,7 @@
   let kernelWidth = 3;
   let kernelHeight = 3;
   let padding = 0;
+  let addPadding = true;
 
   $: matrix =
     matrixHeight > 0 && matrixWidth > 0
@@ -22,7 +23,7 @@
           .map(() => Array(kernelWidth).fill(1))
       : [[]];
 
-  $: result = conv_2d(kernel, matrix, padding);
+  $: result = conv_2d(kernel, matrix, addPadding, padding);
 
   function uniform_array(len, value) {
     let arr = new Array(len);
@@ -31,7 +32,7 @@
     return arr;
   }
 
-  function conv_2d(kernel, array, padding = 0) {
+  function conv_2d(kernel, array, addPadding, padding = 0) {
     // source: https://stackoverflow.com/questions/64669531/2d-convolution-for-javascript-arrays
     let result = uniform_array(array.length, uniform_array(array[0].length, 0));
     let kRows = kernel.length;
@@ -59,6 +60,15 @@
         }
       }
     }
+
+    if (!addPadding && kCenterX > 0 && kCenterY > 0)
+      result =
+        kRows >= rows || kCols >= cols
+          ? [[]]
+          : result
+              .slice(kCenterY, -kCenterY)
+              .map((r) => r.slice(kCenterX, -kCenterX));
+
     return result;
   }
 </script>
@@ -84,7 +94,10 @@
       <Matrix matrix={result} readonly="true" />
     </div>
     <div style="grid-area: padding">
-      <div>Padding</div>
+      <label>
+        <input type="checkbox" bind:checked={addPadding} />
+        Padding
+      </label>
       <div>
         <input
           type="number"
