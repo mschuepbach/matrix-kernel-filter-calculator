@@ -58,8 +58,8 @@
   }
 </script>
 
-<main>
-  <div class="container">
+<div class="container">
+  <main>
     <h5 style="grid-area: matrix-title">Matrix</h5>
     <h5 style="grid-area: kernel-title">Kernel</h5>
     <h5 style="grid-area: result-title">Result</h5>
@@ -92,32 +92,44 @@
         />
       </div>
     </div>
-  </div>
-</main>
+  </main>
+  <footer>
+    <a
+      href="https://github.com/mschuepbach/matrix-kernel-filter-calculator"
+      target="_blank"
+      title="GitHub Repository"
+    >
+      <img src="./GitHub-Mark.svg" alt="GitHub Repository" width="32px" />
+    </a>
+  </footer>
+</div>
 
 <style>
-  main {
-    text-align: center;
-    margin: 0 auto;
-  }
-
   h5 {
     margin: 1em 0 0;
   }
 
   .container {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
     display: grid;
+    margin-bottom: auto;
     grid-template-areas:
       "matrix-title kernel-title result-title"
       "matrix-size kernel-size result-size"
       "matrix kernel result"
       "padding padding padding";
-    grid-gap: 0.5em;
+    grid-gap: .8em;
     align-items: center;
   }
 
   @media (max-width: 960px) {
-    .container {
+    main {
       grid-template-areas:
         "matrix-title"
         "matrix-size"
@@ -130,5 +142,9 @@
         "result"
         "padding";
     }
+  }
+
+  footer {
+    margin-top: 1em;
   }
 </style>
