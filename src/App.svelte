@@ -78,7 +78,7 @@
         />
       </div>
       <div style="grid-area: result-size">
-        {result[0].length}x{result.length}
+        {result[0].length} &times; {result.length}
       </div>
       <div style="grid-area: matrix"><Matrix bind:matrix /></div>
       <div style="grid-area: kernel"><Matrix bind:matrix={kernel} /></div>

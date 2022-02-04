@@ -5,7 +5,7 @@
 
 <div>
   <input type="number" min="1" bind:value={matrixWidth} onclick="select()" />
-  <span>x</span>
+  <span>&times;</span>
   <input type="number" min="1" bind:value={matrixHeight} onclick="select()" />
 </div>
 
