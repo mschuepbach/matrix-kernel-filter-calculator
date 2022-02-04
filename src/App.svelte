@@ -1,6 +1,9 @@
 <script>
-  import MatrixSizeInput from "./MatrixSizeInput.svelte";
+  import ThemeWrapper from "./../node_modules/svelte-themer/components/ThemeWrapper.svelte";
   import Matrix from "./Matrix.svelte";
+  import MatrixSizeInput from "./MatrixSizeInput.svelte";
+  import { themes } from "./themes";
+  import ThemeToggle from "./ThemeToggle.svelte";
 
   let matrixWidth = 4;
   let matrixHeight = 4;
@@ -58,54 +61,77 @@
   }
 </script>
 
-<div class="container">
-  <header><h1>Matrix Kernel Filter Calculator</h1></header>
-  <main>
-    <h5 style="grid-area: matrix-title">Matrix</h5>
-    <h5 style="grid-area: kernel-title">Kernel</h5>
-    <h5 style="grid-area: result-title">Result</h5>
-    <div style="grid-area: matrix-size">
-      <MatrixSizeInput bind:matrixWidth bind:matrixHeight />
-    </div>
-    <div style="grid-area: kernel-size">
-      <MatrixSizeInput
-        bind:matrixWidth={kernelWidth}
-        bind:matrixHeight={kernelHeight}
-      />
-    </div>
-    <div style="grid-area: result-size">{result[0].length}x{result.length}</div>
-    <div style="grid-area: matrix"><Matrix bind:matrix /></div>
-    <div style="grid-area: kernel"><Matrix bind:matrix={kernel} /></div>
-    <div style="grid-area: result">
-      <Matrix matrix={result} readonly="true" />
-    </div>
-    <div style="grid-area: padding">
-      <label>
-        <input type="checkbox" bind:checked={addPadding} />
-        Padding
-      </label>
-      <div>
-        <input
-          type="number"
-          bind:value={padding}
-          style="width: 3em;"
-          onclick="select()"
+<ThemeWrapper {themes} key="kernel-filter-calculator__theme">
+  <div class="container">
+    <header><h1>Matrix Kernel Filter Calculator</h1></header>
+    <main>
+      <h5 style="grid-area: matrix-title">Matrix</h5>
+      <h5 style="grid-area: kernel-title">Kernel</h5>
+      <h5 style="grid-area: result-title">Result</h5>
+      <div style="grid-area: matrix-size">
+        <MatrixSizeInput bind:matrixWidth bind:matrixHeight />
+      </div>
+      <div style="grid-area: kernel-size">
+        <MatrixSizeInput
+          bind:matrixWidth={kernelWidth}
+          bind:matrixHeight={kernelHeight}
         />
       </div>
-    </div>
-  </main>
-  <footer>
-    <a
-      href="https://github.com/mschuepbach/matrix-kernel-filter-calculator"
-      target="_blank"
-      title="GitHub Repository"
-    >
-      <img src="./GitHub-Mark.svg" alt="GitHub Repository" width="32px" />
-    </a>
-  </footer>
-</div>
+      <div style="grid-area: result-size">
+        {result[0].length}x{result.length}
+      </div>
+      <div style="grid-area: matrix"><Matrix bind:matrix /></div>
+      <div style="grid-area: kernel"><Matrix bind:matrix={kernel} /></div>
+      <div style="grid-area: result">
+        <Matrix matrix={result} readonly="true" />
+      </div>
+      <div style="grid-area: padding">
+        <label>
+          <input type="checkbox" bind:checked={addPadding} />
+          Padding
+        </label>
+        <div>
+          <input
+            type="number"
+            bind:value={padding}
+            style="width: 3em;"
+            onclick="select()"
+          />
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="left"><ThemeToggle /></div>
+      <div class="center">
+        <a
+          href="https://github.com/mschuepbach/matrix-kernel-filter-calculator"
+          target="_blank"
+          title="GitHub Repository"
+        >
+          <img src="./GitHub-Mark.svg" alt="GitHub Repository" width="32px" />
+        </a>
+      </div>
+      <div class="right" />
+    </footer>
+  </div>
+</ThemeWrapper>
 
 <style>
+  :global(html) {
+    background-color: var(--theme-colors-background, initial);
+    color: var(--theme-colors-text, initial);
+  }
+
+  :global(input) {
+    color: var(--theme-colors-text, initial);
+    border-color: var(--theme-colors-input-border, initial);
+    background-color: var(--theme-colors-input-background, initial);
+  }
+
+  :global(button) {
+    color: var(--theme-colors-text, initial);
+  }
+
   h5 {
     margin: 1em 0 0;
   }
@@ -129,7 +155,7 @@
       "matrix-size kernel-size result-size"
       "matrix kernel result"
       "padding padding padding";
-    grid-gap: .8em;
+    grid-gap: 0.8em;
     align-items: center;
   }
 
@@ -150,6 +176,13 @@
   }
 
   footer {
+    display: flex;
     margin-top: 1em;
+    text-align: left;
+  }
+
+  .left,
+  .right {
+    flex: 1;
   }
 </style>
