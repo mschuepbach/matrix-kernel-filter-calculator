@@ -68,10 +68,10 @@
       <h5 style="grid-area: matrix-title">Matrix</h5>
       <h5 style="grid-area: kernel-title">Kernel</h5>
       <h5 style="grid-area: result-title">Result</h5>
-      <div style="grid-area: matrix-size">
+      <div style="grid-area: matrix-size" data-test="matrix-size">
         <MatrixSizeInput bind:matrixWidth bind:matrixHeight />
       </div>
-      <div style="grid-area: kernel-size">
+      <div style="grid-area: kernel-size" data-test="kernel-size">
         <MatrixSizeInput
           bind:matrixWidth={kernelWidth}
           bind:matrixHeight={kernelHeight}
@@ -80,14 +80,22 @@
       <div style="grid-area: result-size">
         {result[0].length} &times; {result.length}
       </div>
-      <div style="grid-area: matrix"><Matrix bind:matrix /></div>
-      <div style="grid-area: kernel"><Matrix bind:matrix={kernel} /></div>
-      <div style="grid-area: result">
+      <div style="grid-area: matrix" data-test="matrix">
+        <Matrix bind:matrix />
+      </div>
+      <div style="grid-area: kernel" data-test="kernel">
+        <Matrix bind:matrix={kernel} />
+      </div>
+      <div style="grid-area: result" data-test="result">
         <Matrix matrix={result} readonly="true" />
       </div>
       <div style="grid-area: padding">
         <label>
-          <input type="checkbox" bind:checked={addPadding} />
+          <input
+            type="checkbox"
+            bind:checked={addPadding}
+            data-test="padding"
+          />
           Padding
         </label>
         <div>
