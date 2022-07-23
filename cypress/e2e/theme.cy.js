@@ -26,12 +26,12 @@ const isLightMode = () => {
 describe("Theme", () => {
   it("is light by default", () => {
     cy.visit("/");
-    isDarkMode();
+    isLightMode();
   });
 
   it("is dark if user has set it in the browser", () => {
     visit(true);
-    isLightMode();
+    isDarkMode();
   });
 
   it("can toggle", () => {
