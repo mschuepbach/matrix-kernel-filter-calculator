@@ -24,22 +24,22 @@ const isLightMode = () => {
 };
 
 describe("Theme", () => {
-  it("is dark by default", () => {
+  it("is light by default", () => {
     cy.visit("/");
     isDarkMode();
   });
 
-  it("is light if user has set it in the browser", () => {
-    visit(false);
+  it("is dark if user has set it in the browser", () => {
+    visit(true);
     isLightMode();
   });
 
   it("can toggle", () => {
-    visit(true);
-    isDarkMode();
-    cy.get("[data-test=toggle-theme]").click();
+    cy.visit("/");
     isLightMode();
     cy.get("[data-test=toggle-theme]").click();
     isDarkMode();
+    cy.get("[data-test=toggle-theme]").click();
+    isLightMode();
   });
 });
