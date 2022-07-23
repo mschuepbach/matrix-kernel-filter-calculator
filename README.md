@@ -34,3 +34,11 @@ To create an optimised version of the app:
 ```bash
 npm run build
 ```
+
+## Deploying
+
+Deploy to GitHub Pages:
+
+```bash
+npm run deploy
+```
