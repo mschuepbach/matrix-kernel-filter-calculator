@@ -15,7 +15,7 @@ jobs:
       - name: npm install
         run: npm ci
       - name: npm build
-        run: npm build
+        run: npm run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
   deploy:
