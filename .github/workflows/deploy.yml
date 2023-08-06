@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -13,13 +13,17 @@ jobs:
         with:
           node-version: 18
       - name: npm install
-        run: npm ci --legacy-peer-deps
+        run: npm ci
       - name: npm build
-        run: npm run build
+        env:
+          BASE_PATH: '/matrix-kernel-filter-calculator'
+        run: |
+          npm run build
+          touch build/.nojekyll
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: public
+          path: 'build/'
   deploy:
     needs: build
     permissions:
