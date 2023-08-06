@@ -6,9 +6,7 @@ Live app: **[Matrix Kernel Filter Calculator](https://mschuepbach.github.io/matr
 
 Made with [Svelte](https://svelte.dev).
 
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
+_Note that you will need to have [Node.js](https://nodejs.org) installed._
 
 ## Get started
 
@@ -33,12 +31,4 @@ To create an optimised version of the app:
 
 ```bash
 npm run build
-```
-
-## Deploying
-
-Deploy to GitHub Pages:
-
-```bash
-npm run deploy
 ```
