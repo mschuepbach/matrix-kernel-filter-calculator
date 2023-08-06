@@ -5,7 +5,7 @@
   import { themes } from "./themes";
   import ThemeToggle from "./ThemeToggle.svelte";
 
-  let matrixWidth = 4;
+  let matrixWidth = 5;
   let matrixHeight = 4;
   let kernelWidth = 3;
   let kernelHeight = 3;
