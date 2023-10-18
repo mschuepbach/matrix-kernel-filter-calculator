@@ -12,7 +12,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
-		"cypress": "^10.3.1",
+		"cypress": "^13.3.1",
 		"prettier": "3.0.1",
 		"prettier-plugin-svelte": "^3.0.3",
 		"svelte": "^4.0.5",
