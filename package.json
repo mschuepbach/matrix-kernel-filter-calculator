@@ -16,7 +16,7 @@
 		"prettier": "3.0.1",
 		"prettier-plugin-svelte": "^3.0.3",
 		"svelte": "^4.0.5",
-		"vite": "^4.4.2"
+		"vite": "^4.4.12"
 	},
 	"dependencies": {
 		"svelte-themer": "^0.5.5"
