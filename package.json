@@ -10,8 +10,8 @@
 		"cypress:open": "cypress open"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^2.0.0",
-		"@sveltejs/kit": "^1.26.0",
+		"@sveltejs/adapter-static": "^3.0.1",
+		"@sveltejs/kit": "^2.5.0",
 		"cypress": "^13.3.1",
 		"prettier": "3.0.1",
 		"prettier-plugin-svelte": "^3.0.3",
